@@ -1,7 +1,6 @@
 class Dottyenv < Formula
   desc "Validate .env files against a declared schema"
   homepage "https://github.com/mfung/dottyenv"
-  version "0.1.0"
   license "MIT"
 
   on_macos do
@@ -36,7 +35,7 @@ class Dottyenv < Formula
     # Exercise the real workflow rather than just the version string.
     (testpath/".env").write("DATABASE_URL=postgres://localhost/app\n")
     system bin/"dottyenv", "init", "--quiet"
-    assert_predicate testpath/"dottyenv.toml", :exist?
+    assert_path_exists testpath/"dottyenv.toml"
     system bin/"dottyenv", "check"
 
     # A missing schema must exit 3, not 1. shell_output raises on a different
